@@ -1,0 +1,7 @@
+# ninja log v5
+6	102	7641714792545184	CMakeFiles/Aula_6.dir/tabela.c.obj	ccadf5b861440405
+102	180	7641714793303477	Aula_6.exe	37d140566a8f8d2e
+1	89	7641714792395585	CMakeFiles/Aula_6.dir/main.c.obj	e50f24ad38e394b1
+13	97	7641714792505295	CMakeFiles/Aula_6.dir/retangulo.c.obj	9db6cc6174b578b5
+9	90	7641714792405557	CMakeFiles/Aula_6.dir/ponto.c.obj	7c7aab06a2923dbd
+2	296	7647722664848906	build.ninja	59353eeda17cab88

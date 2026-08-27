@@ -1,0 +1,5 @@
+# ninja log v5
+5	160	7629598245800366	CMakeFiles/Aula_4.dir/matrizes.c.obj	50c788fcdc4e3ec0
+112	242	7629619606079011	Aula_4.exe	f57caac1ec050f86
+1	236	7635648373995844	build.ninja	2238f341f8e45b06
+3	111	7629619604802724	CMakeFiles/Aula_4.dir/strings.c.obj	e1ba3269f96668eb

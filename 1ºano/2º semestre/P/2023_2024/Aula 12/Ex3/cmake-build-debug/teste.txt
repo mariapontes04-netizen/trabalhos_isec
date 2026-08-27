@@ -1,0 +1,8 @@
+int main(){
+    char nome[80];
+    printf("\nNome do ficheiro -> ");
+    gets(nome);
+
+    puts("\nLinha a Linha \n");
+    mostrar_ficheiro_linhas(nome);
+}

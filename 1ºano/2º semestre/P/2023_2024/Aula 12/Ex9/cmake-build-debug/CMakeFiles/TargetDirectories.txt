@@ -1,0 +1,3 @@
+C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/Prog/Aula 12/Ex9/cmake-build-debug/CMakeFiles/Ex9.dir
+C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/Prog/Aula 12/Ex9/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/Prog/Aula 12/Ex9/cmake-build-debug/CMakeFiles/rebuild_cache.dir

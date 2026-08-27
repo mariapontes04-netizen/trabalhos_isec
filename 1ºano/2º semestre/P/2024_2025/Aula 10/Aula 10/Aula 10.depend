@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1745488758 source:c:\users\dcava\desktop\as minhas coisas\universidade\1º ano\programação\2025\aula 10\aula 10\funcoes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funcoes.h"
+
+1745488839 c:\users\dcava\desktop\as minhas coisas\universidade\1º ano\programação\2025\aula 10\aula 10\funcoes.h
+
+1745487396 source:c:\users\dcava\desktop\as minhas coisas\universidade\1º ano\programação\2025\aula 10\aula 10\main.c
+	<stdio.h>
+	"funcoes.h"
+
