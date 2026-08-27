@@ -1,11 +1,6 @@
-cmake_minimum_required(VERSION 3.26)
-project(Desafio_3 C)
+cmake_minimum_required(VERSION 4.1)
+project(Desafio_3_2 C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
 
-include_directories(.)
-
-add_executable(Desafio_3
-        2023133420.c
-        lista.h
-        main.c)
+add_executable(Desafio_3_2 main.c 2023133420.c)

@@ -1,5 +1,18 @@
-# ninja log v5
-6	166	7617523485714972	CMakeFiles/Aula_2.dir/2B-strings.c.obj	77165d12055c2f43
-1	106	7617520963989678	CMakeFiles/Aula_2.dir/2A-Matrizes.c.obj	2ca648a1c3bc1191
-2	322	7623520436025899	build.ninja	f9bdf1ae8e2b6b8b
-167	348	7617523487449109	Aula_2.exe	991e2d5533679c65
+# ninja log v6
+4	212	7929542321859237	build.ninja	169d18e878a22c5d
+58	176	7929541654284063	CMakeFiles/aula_2.dir/P2526-strings.c.obj	269220ad7ae578a6
+47	174	7929541654164358	CMakeFiles/aula_2.dir/P2526-matrizes.c.obj	ae7953751e3363c5
+4	212	7929542321819340	C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/P/aula 2/cmake-build-debug/cmake_install.cmake	169d18e878a22c5d
+1	207	7929542321859237	build.ninja	169d18e878a22c5d
+1	207	7929542321859237	C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/P/aula 2/cmake-build-debug/cmake_install.cmake	169d18e878a22c5d
+24	124	7929542322873641	aula_2.exe	6ed4b9e32401234d
+4	94	7929545860595385	CMakeFiles/aula_2.dir/P2526-matrizes.c.obj	ae7953751e3363c5
+94	204	7929545861505599	aula_2.exe	6ed4b9e32401234d
+5	113	7929548324057775	CMakeFiles/aula_2.dir/P2526-matrizes.c.obj	ae7953751e3363c5
+114	258	7929548325135031	aula_2.exe	6ed4b9e32401234d
+3	86	7929550944890765	CMakeFiles/aula_2.dir/P2526-matrizes.c.obj	ae7953751e3363c5
+87	217	7929550945720263	aula_2.exe	6ed4b9e32401234d
+4	92	7929551645963428	CMakeFiles/aula_2.dir/P2526-matrizes.c.obj	ae7953751e3363c5
+93	201	7929551646847945	aula_2.exe	6ed4b9e32401234d
+6	101	7929567977685761	CMakeFiles/aula_2.dir/P2526-matrizes.c.obj	ae7953751e3363c5
+102	220	7929567978634195	aula_2.exe	6ed4b9e32401234d

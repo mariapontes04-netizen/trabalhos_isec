@@ -1,15 +1,42 @@
+/* NOTAS IMPORTANTES
+
+Devem efetuar as seguintes alteracoes:
+
+a.	Alterar o nome do ficheiro, que deve passar a ser o do vosso numero de aluno e mantendo a extensao .c.
+    Caso o vosso numero de aluno seja 20251234, devem submeter um ficheiro com nome 20251234.c
+
+b.	Quando efetuarem a alteracao da alinea anterior, tenham cuidado para não alterar o nome dos
+    ficheiros de cabeçalho (header files) que surgem no inicio do codigo.
+    O refactoring do CLion pode alterar o nome dos ficheiros .h e isso nao pode acontecer no ficheiro que submeterem.
+    Confiram a linha 35 do ficheiro que deve continuar a ser #include "lista.h".
+
+c.	Após concluirem a submissao, confirmem que o ficheiro tem o nome correto.
+    Se não cumprirem as regras das alineas a) e b) ficarao sem nota atribuida
+
+d.	Completar a vossa identificaca nas linhas 28 e 29 do ficheiro.
+
+e.	Escrever a funcao desafio3(), de acordo com o que é solicitado no enunciado.
+    Esta funcao não deve escrever nada na consola, efetuando apenas as operacoes descritas no enunciado.
+    Caso julgue relevante, pode criar funçoes auxiliares dentro deste ficheiro .c.
+
+f.	Os restantes ficheiros do projeto nao podem ser alterados.
+    Deve garantir que o ficheiro que entrega continua compativel com o resto do projeto.
+*/
+
+
+
+// Nome completo: Maria Ana da Cruz Candeias Matos Pontes
+// Número de aluno: 2023133420
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "lista.h"
+#include "2023133420.h"
 
-// Nome: Maria Ana da Cruz Candeias Matos Pontes
-// Número: 2023133420
 
-void eliminaLista(pno lista){
-    pno aux;
+void eliminaLista(pnodr lista){
+    pnodr aux;
 
     while(lista != NULL){
         aux = lista;
@@ -18,12 +45,12 @@ void eliminaLista(pno lista){
     }
 }
 
-pno criaLista(no tab[], int tam){
+pnodr criaLista(nodr tab[], int tam){
     int i;
-    pno lista=NULL, novo;
+    pnodr lista=NULL, novo;
 
     for(i=tam-1; i>=0; i--){
-        novo = malloc(sizeof(no));
+        novo = malloc(sizeof(nodr));
         if(novo == NULL){
             eliminaLista(lista);
             return NULL;
@@ -35,144 +62,74 @@ pno criaLista(no tab[], int tam){
     return lista;
 }
 
-void mostraLista(pno lista){
+void mostraLista(pnodr lista){
     printf("{ ");
     while(lista != NULL){
-        printf("%s-%d", lista->id, lista->v);
+        printf("%s-%d", lista->id, lista->bat);
         lista = lista->prox;
         if(lista!=NULL)
-            printf(",\t");
+            printf(", ");
     }
-    printf("}");
+    printf(" }");
 }
 
 
-pno removeNo(pno lista, int lim){
-    pno atual = lista, anterior = NULL;
 
-    // Primeira parte: remover nós com id maior que lim
-    while (atual != NULL) {
-        if (strlen(atual->id) > lim) {
-            if (anterior == NULL) {
-                // Remover o primeiro nó
-                lista = atual->prox;
-                free(atual);
-                atual = lista;
-            } else {
-                anterior->prox = atual->prox;
-                free(atual);
-                atual = anterior->prox;
+// Se achar necessario, pode escrever aqui funcoes auxiliares
+int contaDrones(pnodr lista) {
+    int cont = 0;
+    while (lista != NULL) {
+        cont++;
+        lista = lista->prox;
+    }
+    return cont;
+}
+
+// Final da seccao com funcoes auxiliares
+
+// Escreva a funcao desafio3(), de acordo com o descrito no enunciado
+
+pnodr desafio3(pnodr lista){
+
+    if (lista == NULL || lista->prox == NULL) {
+        return lista;
+    }
+    int n = contaDrones(lista);
+
+    if (n % 2 == 0) {
+        pnodr aux = lista->prox;
+        lista->prox = aux->prox;
+        free(aux);
+        return lista;
+    }
+
+    if (n % 2 != 0) {
+        pnodr atual = lista, ant = NULL, ultimo = NULL;
+        pnodr pMaior = lista, pAntMaior = NULL;
+        int maiorBat = lista->bat;
+
+        while (atual != NULL) {
+            if (atual->bat > maiorBat) {
+                maiorBat = atual->bat;
+                pMaior = atual;
+                pAntMaior = ant;
             }
-        } else {
-            anterior = atual;
+            if (atual->prox == NULL) {
+                ultimo = atual;
+            }
+            ant = atual;
             atual = atual->prox;
         }
-    }
 
-    return lista;
-}
-
-pno moveNo(pno lista){
-    pno atual = lista, anterior = NULL;
-
-    // Segunda parte: mover o nó com maior v para o início
-    pno maxNo = lista, maxAnterior = NULL;
-    atual = lista;
-    anterior = NULL;
-
-    while (atual != NULL) {
-        if (atual->v > maxNo->v) {
-            maxNo = atual;
-            maxAnterior = anterior;
-        }
-        anterior = atual;
-        atual = atual->prox;
-    }
-
-    // Se o maior nó já for o primeiro, nada a fazer
-    if (maxNo != lista) {
-        // Retirar maxNo da lista
-        if (maxAnterior != NULL)
-            maxAnterior->prox = maxNo->prox;
-
-        // Colocar maxNo no início
-        maxNo->prox = lista;
-        lista = maxNo;
-    }
-    return lista;
-}
-
-pno desafio3(pno lista, int lim) {
-
-    lista= removeNo(lista, lim);
-
-    int count = 0;
-    pno atual = lista;
-    while (atual != NULL) {
-        count++;
-        atual = atual->prox;
-    }
-    // Se menos de 3 nós, não faz mais nada
-    if (count < 3)
-        return lista;
-
-    lista= moveNo(lista);
-
-    // Primeira parte: remover nós com id maior que lim
-    /*while (atual != NULL) {
-        if (strlen(atual->id) > lim) {
-            if (anterior == NULL) {
-                // Remover o primeiro nó
-                lista = atual->prox;
-                free(atual);
-                atual = lista;
+        if (pMaior != ultimo) {
+            if (pAntMaior == NULL) {
+                lista = pMaior->prox;
             } else {
-                anterior->prox = atual->prox;
-                free(atual);
-                atual = anterior->prox;
+                pAntMaior->prox = pMaior->prox;
             }
-        } else {
-            anterior = atual;
-            atual = atual->prox;
+            ultimo->prox = pMaior;
+            pMaior->prox = NULL;
         }
     }
-
-    // Contar quantos elementos sobraram
-    int count = 0;
-    atual = lista;
-    while (atual != NULL) {
-        count++;
-        atual = atual->prox;
-    }
-
-    // Se menos de 3 nós, não faz mais nada
-    if (count < 3)
-        return lista;
-
-    // Segunda parte: mover o nó com maior v para o início
-    pno maxNo = lista, maxAnterior = NULL;
-    atual = lista;
-    anterior = NULL;
-
-    while (atual != NULL) {
-        if (atual->v > maxNo->v) {
-            maxNo = atual;
-            maxAnterior = anterior;
-        }
-        anterior = atual;
-        atual = atual->prox;
-    }
-
-    // Se o maior nó já for o primeiro, nada a fazer
-    if (maxNo != lista) {
-        // Retirar maxNo da lista
-        if (maxAnterior != NULL)
-            maxAnterior->prox = maxNo->prox;
-
-        // Colocar maxNo no início
-        maxNo->prox = lista;
-        lista = maxNo;
-    }
-
-    return lista;*/
+    return lista;
 }

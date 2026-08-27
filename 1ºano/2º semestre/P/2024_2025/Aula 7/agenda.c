@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "agenda.h"
-#include <stdbool.h>
 
 // Escreve os dados de todos os contactos na agenda
 // Recebe endereço do vetor e numero de contactos armazenados
@@ -18,34 +17,42 @@ void listaC(pct p, int total){
 // Recebe endereço do vetor e endereço de variavel inteira contento o numero de contactos
 // Devolve endereço de vetor depois de efetuada a atualizacao
 pct addC(pct p, int *total){
-    char nome[100];
+    char nome[200];
     int num;
-    ct novo;
     pct aux;
 
     printf("Nome do novo contacto: ");
-    scanf(" %[^\n]", novo.nome);
+    scanf(" %[^\n]", nome);
+    if (getTel(p, *total, nome) != -1) {
+        printf("Erro: ja existe um contacto com o nome '%s'.\n", nome);
+        return p;
+    }
     printf("Numero do novo contacto: ");
-    scanf(" %d", &(novo.num));
+    scanf(" %d", &num);
 
-    for(int i =0;i<*total;i++){
-        if(p[i].nome == nome)
-            return p;
+    // Completar funcao
+    aux=realloc(p, sizeof(ct) * (*total+1));
+    if (aux == NULL) {
+        printf("Erro: sem memoria disponivel.\n");
+        return p;
     }
-    aux = realloc(p,sizeof(pct)*(*total+1));
-    if(aux == NULL)
-        printf("Erro");
-    else {
-        p=aux;
-        p[*total]= novo;
-        (*total)++;
-    }
+    p=aux;
+    strcpy(p[*total].nome, nome);
+    p[*total].num = num;
+    (*total)++;
+
     return p;
 }
 
 // Recebe endereço do vetor, numero de contactos armazenados e nome do contacto a pesquisar
 // Devolve o numero de telemovel de um contacto
 int getTel(pct p, int total, char *nome){
+    for (int i = 0; i < total; i++) {
+        if (strcmp(p[i].nome, nome) == 0)
+        {
+            return p[i].num;
+        }
+    }
     return -1;
 }
 
@@ -53,58 +60,53 @@ int getTel(pct p, int total, char *nome){
 // Recebe endereço do vetor, numero de contactos armazenados, nome do contacto a atualizar e novo numero
 // Devolve 1 se a atualizacao for efetuada, ou 0, caso contrario
 int atualizaTel(pct p, int total, char *nome, int novoT){
+    for (int i = 0; i < total; i++) {
+        if (strcmp(p[i].nome, nome) == 0)
+        {
+            p[i].num = novoT;
+            return 1;
+        }
+    }
     return 0;
 }
 
 // Recebe endereço do vetor e numero de contactos armazenados 
 // Devolve o numero de operadores moveis diferentes que existem no array
 int getOperador(pct p, int total){
-    int* opp=NULL;
-    int nop=0, div=10000000;
-    for(int i=0;i<total;i++){
-            int op =(p[i].num)/div;
-            bool novo = true;
-            for(int j=0;j<nop && novo;j++){
-                if(opp[j]==op) novo= false;
-            }
-            if(novo) {
-                int *aux = realloc(opp, sizeof(int)*(nop + 1));
-                if(aux == NULL) printf("erro");
-                else{
-                    opp = aux;
-                    opp[nop] = op;
-                    nop++;
-                }
-            }
-
-    }
-    free(opp);
-    return nop;
+    return 0;
 }
 
 // Eliminar um novo contacto do vetor dinamico
 // Recebe endereço do vetor, endereço de variavel inteira contento o numero de contactos e nome do contacto a eliminar
 // Devolve endereço de vetor depois de efetuada a atualizacao
-contacto* eliminaC(contacto *tab, int *tam){
-    int indice=pre_eliminarC(tab,tam);
-    if(indice>-1){
-        if(*tam==1){
-            free(tab);
-            *tam=0;
-            return NULL;
-        } else{
-            contacto temp=tab[indice];
-            tab[indice]=tab[*tam-1];
-        }
-        contacto *aux= realloc(tab,sizeof (contacto)*(*tam-1));
-        if(aux==NULL){
-            printf("Erro");
-            tab[indice]=temp;
-        } else{
-            tab=aux;
-            (*tam)--;
-            printf("\nContacto eliminado");
+pct eliminaC(pct p, int *total, char *nome){
+    int i, j;
+    int enc = -1;
+
+    for (i = 0; i < *total; i++) {
+        if (strcmp(p[i].nome, nome) == 0) {
+            enc = i;
+            break;
         }
     }
-    return tab;
+    if (enc == -1) {
+        printf("Contacto nao encontrado.\n");
+        return p;
+    }
+    for (j = enc; j < (*total) - 1; j++) {
+        p[j] = p[j + 1];
+    }
+    (*total)--;
+
+    if (*total > 0) {
+        pct temp = (pct)realloc(p, sizeof(ct) * (*total));
+        if (temp != NULL) {
+            p = temp;
+        }
+    } else {
+        free(p);
+        return NULL;
+    }
+    printf("Contacto eliminado com sucesso!\n");
+    return p;
 }

@@ -1,3 +1,3 @@
-C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/Prog/2º vez/Aula 2/cmake-build-debug/CMakeFiles/Aula_2.dir
-C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/Prog/2º vez/Aula 2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/Prog/2º vez/Aula 2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/P/aula 2/cmake-build-debug/CMakeFiles/aula_2.dir
+C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/P/aula 2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/P/aula 2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

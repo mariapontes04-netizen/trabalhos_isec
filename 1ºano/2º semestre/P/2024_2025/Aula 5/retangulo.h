@@ -2,23 +2,23 @@
 #define RETANGULO_H
 #include "ponto.h"
 
-typedef struct retangulo rt;
+typedef struct retangulo ret;
 struct retangulo{
-    ponto2D c;
+    ponto2D canto;
     int alt, larg;
 };
 
 // Prototipos das funções definidas no modulo retangulo.c
 
-void printRet(rt r);
+void printRet(ret r);
 
-void initRet(rt* p);
+void initRet(ret* p);
 
-int areaR(rt r);
+int areaR(ret r);
 
-int dentroR(rt r, ponto2D a);
+int dentroR(ret r, ponto2D a);
 
-int overlap(rt r1, rt r2);
+int overlap(ret r1, ret r2);
 
 #endif
 

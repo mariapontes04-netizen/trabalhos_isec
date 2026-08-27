@@ -1,13 +1,6 @@
-cmake_minimum_required(VERSION 3.26)
-project(Aula_5 C)
+cmake_minimum_required(VERSION 4.1)
+project(aula_5 C)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 99)
 
-include_directories(.)
-
-add_executable(Aula_5
-        main.c
-        ponto.c
-        ponto.h
-        retangulo.c
-        retangulo.h)
+add_executable(aula_5 main.c ponto.c retangulo.c)

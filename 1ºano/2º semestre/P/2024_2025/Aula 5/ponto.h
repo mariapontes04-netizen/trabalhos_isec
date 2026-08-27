@@ -15,8 +15,8 @@ void initPonto(ponto2D* p);
 
 void movePonto(ponto2D* p, int dx, int dy);
 
-int quadrante(ponto2D p);
+int quadrante(ponto2D a);
 
-int eReta(ponto2D p1, ponto2D p2, ponto2D p3);
+int eReta(ponto2D a, ponto2D b, ponto2D c);
 
 #endif

@@ -1,8 +1,7 @@
-cmake_minimum_required(VERSION 3.26)
-project(Aula_2 C)
+cmake_minimum_required(VERSION 4.1)
+project(aula_2 C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
 
-add_executable(Aula_2
-        2B-strings.c
-)
+add_executable(aula_2
+        P2526-matrizes.c)

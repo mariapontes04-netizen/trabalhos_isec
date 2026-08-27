@@ -1,71 +1,124 @@
-#include "funcao.h"
-#include <string.h>
+
+/* NOTAS IMPORTANTES
+
+Devem efetuar as seguintes alteracoes:
+
+a.	Alterar o nome do ficheiro, que deve passar a ser o do vosso numero de aluno e mantendo a extensao .c.
+    Caso o vosso numero de aluno seja 20251234, devem submeter um ficheiro com nome 20251234.c
+
+b.	Quando efetuarem a alteracao da alinea anterior, tenham cuidado para não alterar o nome dos
+    ficheiros de cabeçalho (header files) que surgem no inicio do codigo.
+    O refactoring do CLion pode alterar o nome dos ficheiros .h e isso nao pode acontecer no ficheiro que submeterem.
+    Confiram a linha 35 do ficheiro que deve continuar a ser #include "voo.h".
+
+c.	Após concluirem a submissao, confirmem que o ficheiro tem o nome correto.
+    Se não cumprirem as regras das alineas a) e b) ficarao sem nota atribuida
+
+d.	Completar a vossa identificaca nas linhas 28 e 29 do ficheiro.
+
+e.	Escrever a funcao desafio2(), de acordo com o que é solicitado no enunciado.
+    Esta funcao não deve escrever nada na consola, efetuando apenas as operacoes descritas no enunciado.
+    Caso julgue relevante, pode criar funçoes auxiliares dentro deste ficheiro .c.
+
+f.	Os restantes ficheiros do projeto nao podem ser alterados.
+    Deve garantir que o ficheiro que entrega continua compativel com o resto do projeto.
+
+*/
+
+// Nome completo: Maria Ana da Cruz Candeias Matos Pontes
+// Número de aluno: 2023133420
+
+
 #include <stdio.h>
-// Nome: Maria Ana da Cruz Candeias Matos Pontes
-// Número: 2023133420
+#include <string.h>
 
-// Deve cumprir todas as regras de submissão (ver enunciado), caso contrário o trabalho poderá não ser avaliado
+#include "voo.h"
 
-void mostraTab(projeto a[], int tam){
+void printVoo(voo a) {
     int i;
 
-    for(i=0; i<tam; i++){
-        printf("Projeto %d:\n", i);
-        printf("Inicio: %2.2d:%2.2d:%4d\tFinal: %2.2d:%2.2d:%4d\tDuracao: %d\n",
-               a[i].inicio.dia, a[i].inicio.mes, a[i].inicio.ano,a[i].final.dia, a[i].final.mes, a[i].final.ano, a[i].duracao);
-        printf("Palavras chave: {%s, %s, %s, %s}\n", a[i].palavras[0], a[i].palavras[1], a[i].palavras[2], a[i].palavras[3]);
-        printf("Orcamento: %d\n\n", a[i].valor);
-    }
+    printf("%s (%2.2d-%2.2d): %s - %s - %d\n",
+        a.codigo, a.partida.dia, a.partida.mes, a.origem, a.destino, a.lugares);
 }
 
-int conta_vogais(const char *palavra) {
+void printTab(voo a[], int tam) {
+    int i;
+
+    for (i=0; i<tam; i++)
+        printVoo(a[i]);
+
+}
+
+// Se achar necessario, pode escrever aqui funcoes auxiliares
+int dataParaInt(data d) {
+    return (d.mes * 100) + d.dia;
+}
+
+ /* Escreva a funcao desafio 2.
+ Esta funcao recebe uma tabela de estruturas do tipo voo.
+ Quando entra na funcao, a tabela nao esta ordenada por nenhum criterio.
+
+ A funcao deve efetuar as seguintes operacoes:
+
+1. Encontrar voo com menos lugares livres. Em caso de empate selecionar o que tem codigo alfabeticamente menor.
+ Este voo deve ser colocado na primeira posicao da tabela, efetuando uma troca direta com o que lá se encontra.
+
+2. Contar quantos voos existem entre duas cidades num determinado intervalo de tempo:
+   por exemplo, contabilizar quantos voos existem que partam da Lisboa e aterrem no Porto entre 12/03 e 18/4.
+
+   A função recebe os seguintes parâmetros:
+   - Endereço inicial da tabela de voos (tab);
+   - Dimensão da tabela de voos (tam);
+   - Cidades origem e destino a considerar na contabilização de voos (or e dest)
+   - Datas limites a considerar na contabilização de voos (lInf e lSup).
+
+   A função devolve o numero de voos contabilizados na operação 2.
+*/
+
+int desafio2(voo tab[], int tam, char *or, char *dest, data lInf, data lSup){
+    if (tam <= 0) return 0;
+
+    int i, minIdx = 0;
     int count = 0;
-    while (*palavra) {
-        if (strchr("aeiou", *palavra)) count++;
-        palavra++;
+    voo temp;
+
+    // --- Operação 1: Encontrar o voo com menos lugares livres ---
+    for (i = 1; i < tam; i++) {
+        // Se encontrar um voo com menos lugares
+        if (tab[i].lugares < tab[minIdx].lugares) {
+            minIdx = i;
+        }
+        // Em caso de empate nos lugares, verifica a ordem alfabética do código
+        else if (tab[i].lugares == tab[minIdx].lugares) {
+            if (strcmp(tab[i].codigo, tab[minIdx].codigo) < 0) {
+                minIdx = i;
+            }
+        }
     }
+
+    // Troca direta com a primeira posição (apenas se não for o próprio 0)
+    if (minIdx != 0) {
+        temp = tab[0];
+        tab[0] = tab[minIdx];
+        tab[minIdx] = temp;
+    }
+
+    // --- Operação 2: Contar voos entre or e dest no intervalo [lInf, lSup] ---
+    int limiteInf = dataParaInt(lInf);
+    int limiteSup = dataParaInt(lSup);
+
+    for (i = 0; i < tam; i++) {
+        int dataVoo = dataParaInt(tab[i].partida);
+
+        // Verifica origem, destino e se a data está dentro do intervalo inclusive
+        if (strcmp(tab[i].origem, or) == 0 &&
+            strcmp(tab[i].destino, dest) == 0 &&
+            dataVoo >= limiteInf &&
+            dataVoo <= limiteSup) {
+            count++;
+            }
+    }
+
     return count;
 }
 
-// Função auxiliar para calcular a contribuição da palavra-chave para o orçamento
-int calcula_contribuicao(const char *palavra) {
-    int n_vogais = conta_vogais(palavra);
-    char primeiro = palavra[0], ultimo = palavra[strlen(palavra) - 1];
-
-    if (n_vogais == 2 && strchr("aeiou", primeiro) && strchr("aeiou", ultimo)) return 10;
-    if (n_vogais == 1) return 5;
-    if (n_vogais > 3) return 1;
-
-    return 0;
-}
-// Escreva o codigo da função:
-// void desafio2(projeto a[], int tam);
-
-// Recebe:
-// Tabela de estruturas do tipo projeto (a)
-// Dimensão da tabela (tam)
-
-// As estruturas armazenadas na tabela têm os campos inicio, final e pal completamente preenchidos.
-// Para cada uma destas estruturas, a função deve preencher os campos duracao e valor:
-// 1.Colocar no campo duracao o número de dias que decorreram entre o início e o final do projeto
-// 2. Colocar no campo valor o orçamento total do projeto.
-
-
-void desafio2(projeto a[], int tam){
-    for (int i = 0; i < tam; i++) {
-        // Calcula a duração do projeto
-        if(a[i].inicio.mes == a[i].final.mes){
-            a[i].duracao = a[i].final.dia - a[i].inicio.dia;
-        }
-        else{
-            a[i].duracao = a[i].final.dia - a[i].inicio.dia + ((a[i].final.mes - a[i].inicio.mes) * 30) + 1;
-        }
-
-
-        // Calcula o orçamento total do projeto
-        a[i].valor = 0;
-        for (int j = 0; j < tam; j++) {
-            a[i].valor += calcula_contribuicao(a[i].palavras[j]);
-        }
-    }
-}

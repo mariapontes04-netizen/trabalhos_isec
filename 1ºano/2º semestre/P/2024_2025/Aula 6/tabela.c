@@ -6,73 +6,65 @@ void printV(ret a[], int total){
 
     printf("\nExistem %d retangulos na tabela\n", total);
     for(i=0; i<total; i++) {
-        printf("R. %d\n", i+1);
+        printf("R. %d\n", i);
         printRet(a[i]);
     }
 }
 
 int addRet(ret a[], int *total){
-    if(*total >=10) return 0;
+    if (*total == 10)
+    {
+        return 0;
+    }
     initRet(&a[*total]);
-    *total++;
+    (*total)++;
     return 1;
 }
 
 void duplicaAltLarg(ret a[], int total){
-
+    int i;
+    for(i = 0; i < total; i++)
+    {
+        if (areaR(a[i]) % 2 == 0)
+        {
+            a[i].alt = a[i].alt * 2;
+            a[i].larg = a[i].larg * 2;
+        }
+    }
 }
 
 int quadrante1(ret a[], int total){
-    int p=0;
-    for(int i=0; i< total;i++){
-        if(quadrante(a[i].canto)){
-            p++;
-}
-    }
-    return p;
+    return 0;
 }
 
-static int procurar_mais_pequeno(struct retangulo rt[], int n){
-    if(n == 0)
-    {
-        return -1;
+void eliminaMenor(ret a[], int *total)
+{
+    if (*total <= 0) {
+        return;
     }
-    int index = 0;
-    for(int i = 1; i < n; i++)
-    {
-        if(areaR(rt[i]) < areaR(rt[index]))
-        {
-            index = i;
+    int i, indiceMenor = 0, areaMenor = areaR(a[0]);
+
+    for (i = 1; i < *total; i++) {
+        int areaAtual = areaR(a[i]);
+        if (areaAtual < areaMenor) {
+            areaMenor = areaAtual;
+            indiceMenor = i;
         }
     }
-    return index;
-}
-static int eliminar_elemento(struct retangulo rt[], int n, int index){
-    rt[index] = rt[n-1];
-    return n-1;
-}
-void eliminaMenor(struct retangulo tr[], int *n){
-    int p = procurar_mais_pequeno(tr, *n);
-    if(p == -1)
-    {
-        printf("\nNao existem retangulos\n");
-
+    for (i = indiceMenor; i < *total - 1; i++) {
+        a[i] = a[i + 1];
     }
-    else{
-        printf("\nRetangulo com a menor area -> id = %d area = %d\n", p, areaR(tr[p]));
-        *n = eliminar_elemento(tr, *n, p);
-    }
-    return;
+    (*total)--;
+    printf("\nRetangulo no indice %d (Area: %d) eliminado com sucesso!\n", indiceMenor, areaMenor);
 }
 
-void eliminaVarios(struct retangulo tr[], int *n, int area_m){
-    int p = *n;
-    for(int i = p-1; i >= 0; i--)
-    {
-        if(areaR(tr[i]) < area_m)
-        {
-            *n = eliminar_elemento(tr, *n, i);
+void eliminaVarios(ret a[], int *total, int lim)
+{
+    int i, escrita = 0;
+    for (i = 0; i < *total; i++) {
+        if (areaR(a[i]) >= lim) {
+            a[escrita++] = a[i];
         }
     }
-    return;
+    *total = escrita;
 }

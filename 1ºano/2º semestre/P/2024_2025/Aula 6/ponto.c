@@ -8,19 +8,50 @@ void printPonto(ponto2D a){
 
 // Inicializa as coordenadas do ponto referenciado pelo parâmetro recebido. O utilizador indica os valores
 void initPonto(ponto2D* p){
-}
+    if (p == NULL)
+    {
+        return;
+    }
+    printf("Introduza a coordenada x: ");
+    scanf("%d", &p->x);
 
+    printf("Introduza a coordenada y: ");
+    scanf("%d", &p->y);
+}
 
 // Recebe endereço de um ponto e valores para o deslocamento ao longo dos eixos
 // Atualiza as coordenadas do ponto
 void movePonto(ponto2D* p, int dx, int dy){
-
+    if (p == NULL)
+    {
+        return;
+    }
+    p->x += dx;
+    p->y += dy;
 }
 
 // Devolve o quadrante a que pertence o ponto recebido por parâmetro
 int quadrante(ponto2D a){
-
-    return -1;
+    if (a.x > 0 && a.y > 0)
+    {
+        return 1;
+    }
+    else if (a.x < 0 && a.y > 0)
+    {
+        return 2;
+    }
+    else if (a.x < 0 && a.y < 0)
+    {
+        return 3;
+    }
+    else if (a.x > 0 && a.y < 0)
+    {
+        return 4;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 // Recebe 3 pontos
