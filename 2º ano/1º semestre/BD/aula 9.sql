@@ -1,0 +1,187 @@
+exec naluno(2023133420);
+
+--Ex.3
+CREATE TABLE AUTORES_BACKUP(
+    CODIGO_AUTOR	    NUMBER(6),
+    NOME	            VARCHAR2(100) CHECK (NOME = UPPER(NOME)),
+    N_CONTRIBUINTE	    NUMBER(9) CHECK (N_CONTRIBUINTE >= 1000000000),
+    MORADA	            VARCHAR2(100),
+    SEXO	            CHAR(1) CHECK (SEXO IN ('F','N')),
+    DATA_NASCIMENTO	    DATE,
+    GENERO_PREFERIDO	VARCHAR2(40),
+    NACIONALIDADE	    VARCHAR2(60),
+    CONSTRAINT PK_AUTORES_BACKUP PRIMARY KEY (CODIGO_AUTOR),
+    CHECK (GENERO_PREFERIDO = UPPER(GENERO_PREFERIDO))
+);
+DROP TABLE AUTORES_BACKUP;
+EXEC SQLCHECK('FIMKDSHCMXEHLZV');
+
+--Ex.4
+CREATE TABLE AVALIACOES(
+    CODIGO_LIVRO        NUMBER(4),
+    CODIGO_CLIENTE      NUMBER(4),
+    NOTA                NUMBER(1),
+    CONSTRAINT PK_AVALIACOES PRIMARY KEY (CODIGO_LIVRO, CODIGO_CLIENTE),
+    CONSTRAINT FK_AVALIACOES_LIVRO FOREIGN KEY (CODIGO_LIVRO)
+        REFERENCES LIVROS (CODIGO_LIVRO),
+    CONSTRAINT FK_AVALIACOES_CLIENTE FOREIGN KEY (CODIGO_CLIENTE)
+        REFERENCES CLIENTES (CODIGO_CLIENTE),
+    CONSTRAINT CK_AVALIACOES_NOTA CHECK (NOTA BETWEEN 1 AND 5)
+);
+DROP TABLE AVALIACOES;
+EXEC SQLCHECK('FIHOBDADOXWUMIK');
+
+--Ex.5
+CREATE TABLE LIVROS_BACKUP AS 
+SELECT 
+       codigo_livro, codigo_editora, codigo_autor,
+       titulo, isbn,
+       UPPER(genero) genero,
+       preco_tabela, paginas,
+       unidades_vendidas, data_edicao
+FROM livros;
+DROP TABLE LIVROS_BACKUP;
+EXEC SQLCHECK('FIVSWIFEZBRHNWH');
+
+--Ex.6
+ALTER TABLE LIVROS_BACKUP
+    ADD CONSTRAINT PK_LIVROS_BACKUP PRIMARY KEY (codigo_livro)
+    ADD CONSTRAINT FK_LIVBACKUP_AUTORES
+    FOREIGN KEY (codigo_autor) REFERENCES AUTORES (codigo_autor);
+EXEC SQLCHECK('FIWDSAAFTURTOBD');
+
+--Ex.7
+INSERT INTO LIVROS_BACKUP VALUES(501, 
+                                (select codigo_editora from editoras where upper(nome)='LEYA'),
+                                (select codigo_autor from autores where upper(nome)='RICARDO MARTINS'),
+                                'Informática para todos', 132434, 'INFORMÁTICA', 24, 430, 0, sysdate
+                                );
+EXEC SQLCHECK('FIWPQNDGVXWHPYW');
+
+--Ex.8
+INSERT INTO AUTORES_BACKUP (codigo_autor, nome, n_contribuinte)
+VALUES(95, upper('José de Magalhães'), 776655441);
+EXEC SQLCHECK('FIOPTRMHMAGJQPD');
+
+--Ex.9
+DELETE FROM LIVROS_BACKUP
+WHERE codigo_livro = 501;
+EXEC SQLCHECK('FIIRJOPIQBAQRWZ');
+
+--Ex.10
+UPDATE LIVROS_BACKUP
+SET preco_tabela = preco_tabela * 1.1
+WHERE genero = 'AVENTURA';
+EXEC SQLCHECK('FICPRRCJEXZNSQR');
+
+--Ex.11
+DELETE FROM LIVROS_BACKUP
+WHERE genero = 'INFORMÁTICA'
+AND preco_tabela < (
+        SELECT AVG(preco_tabela)
+        FROM LIVROS_BACKUP
+        WHERE UPPER(genero) = 'INFORMÁTICA'
+      );
+EXEC SQLCHECK('FIEODNHKMSMNTLU');
+
+--Ex.12
+ALTER TABLE AUTORES_BACKUP 
+    ADD(NLIVROS NUMBER
+        DEFAULT 0
+        NOT NULL,
+        CONSTRAINT CK_AUTORES_BACKUP_NLIVROS CHECK (NLIVROS BETWEEN 0 AND 150)
+    );
+EXEC SQLCHECK('FIOEYCKLDAOZUDH');
+
+--Ex.13
+UPDATE AUTORES_BACKUP
+SET NLIVROS = (
+    SELECT COUNT(*)
+    FROM LIVROS
+    WHERE livros.codigo_autor = AUTORES_BACKUP.codigo_autor
+);
+EXEC SQLCHECK('FIHNAYIMPMXLVXM');
+
+--Ex.14
+UPDATE AUTORES_BACKUP ab
+SET GENERO_PREFERIDO = (
+    SELECT l.genero
+    FROM LIVROS l
+    WHERE l.codigo_autor = ab.codigo_autor
+    AND l.data_edicao = (SELECT MAX(data_edicao)
+                        FROM LIVROS l2
+                        WHERE l2.codigo_autor = l.codigo_autor
+                        )
+      AND ROWNUM = 1
+)
+WHERE EXISTS (
+    SELECT 1
+    FROM LIVROS l
+    WHERE l.codigo_autor = ab.codigo_autor
+);
+EXEC SQLCHECK('FIFXMNVNPKRRWSE');
+
+--Ex.15
+CREATE TABLE EDITORAS_BACKUP AS
+SELECT *
+FROM EDITORAS;
+EXEC SQLCHECK('FICEENQOVBIP@YP');
+
+--Ex.16
+DROP TABLE EDITORAS_BACKUP;
+EXEC SQLCHECK('FINGKRDPDFLJAHJ');
+
+--Ex.17
+UPDATE LIVROS_BACKUP 
+SET UNIDADES_VENDIDAS = NVL(
+    (SELECT SUM(c.quantidade) 
+     FROM contem c
+     WHERE c.Codigo_Livro = LIVROS_BACKUP.codigo_livro),0
+    );
+EXEC SQLCHECK('FIUGYBDQVYSOBWK');
+
+--Ex.18
+CREATE TABLE VENDAS_BACKUP AS
+SELECT *
+FROM VENDAS
+WHERE 1 = 0;
+EXEC SQLCHECK('FIESCYJRNGNLCRF');
+
+--Ex.19
+UPDATE VENDAS_BACKUP vb
+SET TOTAL_VENDA = NVL(
+    (SELECT SUM(c.quantidade * c.preco_unitario)
+     FROM contem c
+     WHERE c.Código_Venda = vb.Código_Venda),0
+    );
+EXEC SQLCHECK('FIJSWHKSFPRCDYL');
+
+--Ex.20
+CREATE TABLE ENCOMENDAS_BACKUP AS
+SELECT *
+FROM ENCOMENDAS;
+EXEC SQLCHECK('FIYMCRPTHXYNEEN');
+
+--Ex.21
+DELETE FROM ENCOMENDAS_BACKUP
+WHERE Data_Encomenda BETWEEN 
+    TO_DATE('01-09-' || EXTRACT(YEAR FROM SYSDATE), 'DD-MM-YYYY') 
+    AND 
+    TO_DATE('30-09-' || EXTRACT(YEAR FROM SYSDATE), 'DD-MM-YYYY');
+EXEC SQLCHECK('FINTXRSCOGLNLJK');
+
+--Ex.22
+DELETE FROM ENCOMENDAS_BACKUP
+where Codigo_Livro IN (
+    select l.Codigo_Livro
+    from livros L, autores A
+    where l.Codigo_Autor = a.Codigo_Autor
+    and upper(a.Nome) = 'BERNARDO MATOS'
+      and l.Preco_Tabela = (
+          select MAX(l2.Preco_Tabela)
+          from livros L1, autores A1
+          where l1.Codigo_Autor = a1.Codigo_Autor
+          and upper(a1.Nome) = 'BERNARDO MATOS'
+      )
+);
+EXEC SQLCHECK('FIPOSAZDDWTYMQS');
