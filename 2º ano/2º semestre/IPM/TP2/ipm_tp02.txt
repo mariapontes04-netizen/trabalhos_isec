@@ -1,0 +1,22 @@
+Revealing Content Through Examples
+29 - Usar exemplos para revelar o conteúdo do site
+- A homepage não se deve limitar apenas a listar nomes de categorias ou secções de forma abstrata. Em vez disso, deve mostrar diretamente amostras reais do conteúdo que existe dentro de cada área. Um rótulo genérico como "Notícias" ou "Produtos em Destaque" diz muito pouco ao utilizador. Não transmite qualidade, não revela profundidade e não desperta interesse. Quando se exibem exemplos concretos, o utilizador consegue perceber imediatamente o que o site oferece, avaliar se é relevante para as suas necessidades e decidir com mais confiança para onde navegar.
+
+30 - Cada exemplo deve ter um link direto para o seu detalhe
+- Quando a homepage apresenta um exemplo específico, o link associada a esse exemplo deve conduzir diretamente à página detalhada desse item em concreto, e não a uma página de categoria geral. Obrigar o utilizar a reencontrar algo que já viu na homepage é algo   desnecessário e uma fonte de frustração. Se o utilizador viu algo que lhe despertou interesse e clicou, espera chegar imediatamente a mais informação sobre esse item específico.
+
+31 - Fornecer também um link por categoria geral
+- Sempre que se destaca um exemplo individual na homepage, deve existir igualmente um link adjacente para a categoria mais ampla a que esse exemplo pertence. Sem esse link, os utilizadores podem facilmente assumir que o que está em destaque é tudo o que o site tem para oferecer nessa área, subestimando drasticamente a oferta real. Isto pode levar ao utilizador abandonar o site por pensar que não encontra aquilo que procura
+
+32 - Distinguir visualmente os links de exemplo dos links de categoria
+- Numa homepage que combina exemplos específicos com ligações para categorias gerais, é fundamental que o utilizador consiga perceber, à primeira vista, qual o link que aprofunda o exemplo e  qual o que o leva para a categoria completa. Esta distinção deve ser feita tanto através do texto dos links, como através da posição e hierarquia visual da página. O link de exemplo deve estar próximo do item a que se refere, enquanto que o link para a categoria deve estar separado por espaço ou por uma hierarquia visual diferente.
+
+Tools and Task Shortcuts
+53 - Oferecer acesso direto às tarefas de alta prioridade
+- A homepage deve permitir que o utilizador inicie as suas tarefas mais comuns diretamente, sem ter de navegar para outras páginas antes de poder agir. Para isso, as ferramentas necessárias ( formulários, campos de pesquisa, seletores ) devem estar disponíveis e funcionais logo na homepage. A situação ideal é o acesso "zero cliques", em que a resposta mais provável já aparece automaticamente ao utilizador sem que este tenha de introduzir qualquer dado. Quando isso não é possível, o objetivo deve ser o acesso de "um clique", onde o utilizador preenche os dados na homepage e obtém o resultado numa página separada.
+
+54 - Não incluir ferramentas que não correspondam às tarefas do utilizador
+- Incluir uma ferramenta na homepage deve ser sempre uma decisão justificada pela relevância dessa ferramenta para as necessidades reais dos utilizadores do site, nunca  pela simples disponibilidade técnica da ferramenta. Os utilizadores são naturalmente atraídos por elementos interativos como caixas de texto e menus dropdown, e quando os encontram tentam utilizá-los e esperam que sirvam um propósito relacionado com o motivo pelo qual vieram ao site. Se a ferramenta não corresponde a esse propósito, o resultado é confusão e desconfiança.
+
+55 - Não reproduzir funcionalidades que o browser já oferece
+- A homepage não deve incluir ferramentas ou botões que duplicam funcionalidades que o próprio browser já disponibiliza, como adicionar uma página aos favoritos  ou definir uma página como página inicial. Estas opções não acrescentam valor ao utilizador (quem as quiser usar já sabe como fazê-lo através do browser) e ocupam espaço que poderia ser dedicado a conteúdo ou funcionalidades genuinamente úteis.

@@ -1,0 +1,25 @@
+capa
+(indice)
+introdução
+3 exemplos
+prompt + resultado
+opinião conjunta
+exemplo (pq é que é mau)
+foto real
+sugestões de melhoria
+reflexão conjunta
+
+qual a IA usada
+
+exemplo 1
+prompt-aluno a
+resultado - aluno a
+prompt-aluno b
+resultado - aluno b
+
+exemplo escolhido
+solução imagem
+
+"torneira automática
+seletores de data
+algoritmos de recomendação"
