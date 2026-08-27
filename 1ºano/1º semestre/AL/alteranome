@@ -1,6 +1,0 @@
-# Executa este comando no terminal dentro da pasta do repositório:
-git mv ÁlgebraLinear Álgebra_Linear
-
-# Guarda as alterações:
-git commit -m "Renomeia a pasta ÁlgebraLinear para Álgebra_Linear"
-git push
