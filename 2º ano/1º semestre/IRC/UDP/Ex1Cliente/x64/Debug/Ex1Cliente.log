@@ -1,0 +1,4 @@
+﻿  clienteUDPv1_basico.c
+C:\Users\maria\OneDrive\Ambiente de Trabalho\Escola\0 - FACULDADE\2º ano\IRC\UDP\Ex1Cliente\clienteUDPv1_basico.c(65,12): warning C4267: '=': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\maria\OneDrive\Ambiente de Trabalho\Escola\0 - FACULDADE\2º ano\IRC\UDP\Ex1Cliente\clienteUDPv1_basico.c(30,7): warning C4101: 'buffer': variável local não referenciada
+  Ex1Cliente.vcxproj -> C:\Users\maria\OneDrive\Ambiente de Trabalho\Escola\0 - FACULDADE\2º ano\IRC\UDP\x64\Debug\Ex1Cliente.exe
