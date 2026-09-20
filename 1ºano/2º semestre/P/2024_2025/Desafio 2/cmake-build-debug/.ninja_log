@@ -1,9 +1,0 @@
-# ninja log v6
-74	420	7964075485849404	CMakeFiles/CodigoDesafio2.dir/main.c.obj	9ef1456c4b8f9cf6
-9	198	7964077716605701	CMakeFiles/CodigoDesafio2.dir/2023133420.c.obj	d06d7e49d9fff134
-19	423	7964072009944715	CMakeFiles/CodigoDesafio2.dir/voo.c.obj	92470fe0a2a4e49d
-10	497	7964080481607548	build.ninja	2d42372aa26f0f30
-199	391	7964077718489947	CodigoDesafio2.exe	c700f3c069c6146c
-10	497	7964080480581762	C:/Users/maria/Downloads/CodigoDesafio2/cmake-build-debug/cmake_install.cmake	2d42372aa26f0f30
-34	200	7964080556018596	CMakeFiles/CodigoDesafio2.dir/main.c.obj	9ef1456c4b8f9cf6
-201	389	7964080557678174	CodigoDesafio2.exe	c700f3c069c6146c

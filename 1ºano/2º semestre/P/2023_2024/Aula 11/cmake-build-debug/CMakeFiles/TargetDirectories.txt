@@ -1,3 +1,0 @@
-C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/Prog/Aula 11/cmake-build-debug/CMakeFiles/Aula_11.dir
-C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/Prog/Aula 11/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/maria/OneDrive/Ambiente de Trabalho/Escola/0 - FACULDADE/1º ano/2º semestre/Prog/Aula 11/cmake-build-debug/CMakeFiles/rebuild_cache.dir
